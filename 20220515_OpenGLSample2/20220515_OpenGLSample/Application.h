@@ -19,6 +19,8 @@ public:
 	ShapeApp& operator=(const ShapeApp&) = delete;
 	ShapeApp& operator=(ShapeApp&&)      = delete;
 
+	~ShapeApp();
+
 	/// <summary>
 	/// Set width and height of the main window
 	/// </summary>
@@ -44,11 +46,10 @@ public:
 	void EmplaceShape(Args&&... args)
 	{
 		mShapes.emplace_back(new T{ std::forward<Args>(args)... });
-	}
+	}	
 
 private:
 	ShapeApp();
-	~ShapeApp();
 
 	void Init();
 	
