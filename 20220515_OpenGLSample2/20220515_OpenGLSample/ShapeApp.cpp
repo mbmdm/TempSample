@@ -2,10 +2,10 @@
 #include <cstdio>
 
 #include "GLCommon.h"
-#include "Application.h"
+#include "ShapeApp.h"
 #include "Shape.h"
 
-inline void ErrorCallback(int error, const char* description)
+void ErrorCallback(int error, const char* description)
 {
 	fprintf(stderr, "Error: %s\n", description);
 	std::exit(error);
@@ -23,10 +23,6 @@ void ShapeApp::SetWindowSize(uint32_t w, uint32_t h)
 	mHeight = h;
 }
 
-auto ShapeApp::GetWidth() const { return mWidth; }
-
-auto ShapeApp::GetHeight() const { return mHeight; }
-
 void ShapeApp::SetTitle(std::string title)
 {
 	mTitle.swap(title);
@@ -34,17 +30,21 @@ void ShapeApp::SetTitle(std::string title)
 
 void ShapeApp::Run()
 {	
+	constexpr int swapBufferCount = 1;
+
+	//create main window
 	mPtrWindow = glfwCreateWindow(mWidth, mHeight, mTitle.c_str(), NULL, NULL);
 	if (!mPtrWindow)
 		ErrorCallback(EXIT_FAILURE, "failed to create Window.");
 
 	glfwMakeContextCurrent(mPtrWindow);
 
-	glfwSwapInterval(1);
+	glfwSwapInterval(swapBufferCount);
 
 	if (!gladLoadGL(glfwGetProcAddress))
 		ErrorCallback(EXIT_FAILURE, "failed to initialize OpenGL context.");
 
+	//define vertex data
 	GLuint vertexBuffer;
 	glGenBuffers(1, &vertexBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
@@ -54,9 +54,11 @@ void ShapeApp::Run()
 	glGenVertexArrays(1, &vertex_array);
 	glBindVertexArray(vertex_array);
 
+	//compile shaders and program for each figure
 	for (auto& sh : mShapes)
 		sh->Compile();
 
+	//render loop
 	while (!glfwWindowShouldClose(mPtrWindow))
 	{
 		glMatrixMode(GL_MODELVIEW);
@@ -75,6 +77,11 @@ void ShapeApp::Run()
 		glfwSwapBuffers(mPtrWindow);
 		glfwPollEvents();
 	}
+}
+
+void ShapeApp::AddShape(std::unique_ptr<Shape>&& shape)
+{
+	mShapes.push_back(std::move(shape));
 }
 
 ShapeApp::ShapeApp():

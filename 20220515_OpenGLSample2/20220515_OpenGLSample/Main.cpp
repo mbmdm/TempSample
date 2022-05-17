@@ -1,4 +1,4 @@
-#include "Application.h"
+#include "ShapeApp.h"
 #include "ShapeRectangle.h"
 #include "ShapeEllipse.h"
 #include "ShapeTriangle.h"
@@ -14,7 +14,9 @@ int main()
 	app.EmplaceShape<ShapeTriangle>(400, 100, 0, 150);
 	app.EmplaceShape<ShapeRectangle>(400, 100, 0, 300);
 	app.EmplaceShape<ShapeEllipse>(400, 200, 0, 450);
-	app.EmplaceShape<ShapeEllipse>(200, 650, 300, 0);
+
+	std::unique_ptr<Shape> pEllipse{ new ShapeEllipse{200, 650, 300, 0} };
+	app.AddShape(std::move(pEllipse));
 
 	app.Run();
 

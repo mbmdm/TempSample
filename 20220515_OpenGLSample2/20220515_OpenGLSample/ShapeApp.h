@@ -27,21 +27,27 @@ public:
 	/// <param name="w">Width</param>
 	/// <param name="h">Height</param>
 	void SetWindowSize(uint32_t w, uint32_t h);
-	auto GetWidth() const;
-	auto GetHeight() const;
+	
 	/// <summary>
 	/// Set a title of main window
 	/// </summary>
 	void SetTitle(std::string title);
+	
 	/// <summary>
-	/// Perform render cycle
+	/// Start render loop
 	/// </summary>
 	void Run();
-	template <typename T, typename = typename std::enable_if_t<std::is_base_of<Shape, T>::value, T>>
-	void AddShape(std::unique_ptr<T>&& shape)
-	{
-		mShapes.push_back(std::forward<std::unique_ptr<T>>(shape));
-	}
+	
+	/// <summary>
+	/// Add shape instance for rendering.
+	/// </summary>
+	void AddShape(std::unique_ptr<Shape>&& shape);
+	
+	/// <summary>
+	/// Emplace shape for rendering.
+	/// Pass to the function a number of arguments suitable for the corresponding class constructor
+	/// The function does not accept types that are not derrivative of Shape
+	/// </summary>
 	template <typename T, typename = typename std::enable_if_t<std::is_base_of<Shape, T>::value, T>, class... Args>
 	void EmplaceShape(Args&&... args)
 	{
@@ -53,7 +59,6 @@ private:
 
 	void Init();
 	
-	std::string mTitle;
 	uint32_t mWidth, mHeight; //Width and height of the main window
 	GLFWwindow* mPtrWindow;
 	std::vector<std::unique_ptr<Shape>> mShapes;
@@ -62,5 +67,6 @@ private:
 		Each time a rectangle is drawed on the scene using mVertices buffer.
 		The appropriate figure uses its fragment shader (depending on a type) to draw itself.
 	*/
-	Vertex mVertices[6]; 
+	Vertex mVertices[6];
+	std::string mTitle;
 };

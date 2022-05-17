@@ -1,0 +1,14 @@
+﻿  Main.cpp
+D:\git\TempSample\20220515_OpenGLSample2\20220515_OpenGLSample\3rdparty\opengl\include\linmath.h(603,51): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+D:\git\TempSample\20220515_OpenGLSample2\20220515_OpenGLSample\3rdparty\opengl\include\linmath.h(603,20): warning C4244: инициализация: преобразование "double" в "const float", возможна потеря данных
+  Shape.cpp
+D:\git\TempSample\20220515_OpenGLSample2\20220515_OpenGLSample\3rdparty\opengl\include\linmath.h(603,51): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+D:\git\TempSample\20220515_OpenGLSample2\20220515_OpenGLSample\3rdparty\opengl\include\linmath.h(603,20): warning C4244: инициализация: преобразование "double" в "const float", возможна потеря данных
+  ShapeApp.cpp
+D:\git\TempSample\20220515_OpenGLSample2\20220515_OpenGLSample\3rdparty\opengl\include\linmath.h(603,51): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+D:\git\TempSample\20220515_OpenGLSample2\20220515_OpenGLSample\3rdparty\opengl\include\linmath.h(603,20): warning C4244: инициализация: преобразование "double" в "const float", возможна потеря данных
+D:\git\TempSample\20220515_OpenGLSample2\20220515_OpenGLSample\ShapeApp.h(9,17): warning C4099: GLFWwindow: имя типа, ранее отображенное с помощью "struct", теперь отображено с помощью "class"
+D:\git\TempSample\20220515_OpenGLSample2\20220515_OpenGLSample\3rdparty\opengl\include\GLFW\glfw3.h(1186): message : см. объявление "GLFWwindow"
+  Создание кода...
+LINK : warning LNK4098: библиотека по умолчанию "MSVCRT" конфликтует с использованием других библиотек; используйте /NODEFAULTLIB:library
+  20220515_OpenGLSample.vcxproj -> D:\git\TempSample\20220515_OpenGLSample2\x64\Debug\20220515_OpenGLSample.exe

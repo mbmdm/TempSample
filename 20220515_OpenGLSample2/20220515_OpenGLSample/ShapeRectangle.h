@@ -13,13 +13,17 @@ public:
 	/// <param name="y">Start y position of figure render frame</param>
 	ShapeRectangle(int w, int h, int x, int y) noexcept :
 		Shape(w, h, x, y)
-	{}
+	{
+		mFragmentShader = 
+			"#version 330\n"
+			"in vec2 pos;"
+			"in vec3 color;\n"
+			"void main()\n"
+			"{\n"
+			"    gl_FragColor = vec4(color, 1.0);\n"
+			"}\n";
+	}
 
-private:
-
-	void Draw() override;
-	void Compile() override;
-
-	static const char* fragment_shader;
+	~ShapeRectangle() = default;
 };
 
