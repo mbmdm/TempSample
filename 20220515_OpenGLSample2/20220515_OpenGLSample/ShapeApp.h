@@ -1,12 +1,12 @@
 #pragma once
-#include <stdint.h>
 #include <memory>
+#include <stdint.h>
 #include <string>
 #include <vector>
 
 #include "Vertex.h"
 
-class GLFWwindow;
+struct GLFWwindow;
 class Shape;
 
 class ShapeApp
